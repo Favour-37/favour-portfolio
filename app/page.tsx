@@ -8,7 +8,7 @@ import ParallaxGlow from "@/components/ParallaxGlow";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.23, 1, 0.32, 1] } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.23, 1, 0.32, 1] as const } },
 };
 
 export default function Home() {
@@ -59,7 +59,7 @@ export default function Home() {
           initial={{ opacity: 0, scale: 0.94 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+          transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] as const }}
           className="relative flex items-center justify-center"
         >
           <div className="orbit-wrap relative w-64 sm:w-72 md:w-80 h-64 sm:h-72 md:h-80">
@@ -76,7 +76,7 @@ export default function Home() {
                 initial={{ scaleX: 1 }}
                 whileInView={{ scaleX: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.9, delay: 0.2, ease: [0.76, 0, 0.24, 1] }}
+                transition={{ duration: 0.9, delay: 0.2, ease: [0.76, 0, 0.24, 1] as const }}
                 style={{ transformOrigin: "right" }}
                 className="absolute inset-0 z-10 bg-gradient-to-r from-blue-600 to-purple-600"
               />
@@ -210,3 +210,4 @@ export default function Home() {
     </div>
   );
 }
+
