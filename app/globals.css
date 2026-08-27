@@ -1,26 +1,118 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    background: linear-gradient(160deg, #0a1928 0%, #0d2136 45%, #0d2b3e 100%);
+    background-attachment: fixed;
+    color: #f4f6f8;
+    font-family: var(--font-inter), system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+  ::selection {
+    background: #3498db;
+    color: #fff;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Signature ambient glow — one per section, not stacked */
+.glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+.glow-blue { background: radial-gradient(circle, rgba(52,130,246,0.18) 0%, transparent 70%); }
+.glow-purple { background: radial-gradient(circle, rgba(155,89,182,0.14) 0%, transparent 70%); }
+
+/* Glass panel */
+.panel {
+  background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(16px);
+  transition: border-color 0.4s ease, transform 0.4s ease;
+}
+.panel:hover {
+  border-color: rgba(52,130,246,0.35);
+  transform: translateY(-4px);
+}
+
+/* Section title with expanding underline, Dominion-style */
+.title-underline {
+  position: relative;
+  display: inline-block;
+}
+.title-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 36px;
+  height: 3px;
+  background: linear-gradient(90deg, #3498db, #9b59b6);
+  border-radius: 2px;
+  transition: width 0.5s cubic-bezier(0.23,1,0.32,1);
+}
+.title-underline:hover::after,
+.title-underline.in-view::after {
+  width: 100%;
+}
+
+/* Pill CTA with shimmer sweep */
+.btn-pill {
+  position: relative;
+  overflow: hidden;
+  border-radius: 9999px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.btn-pill::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  transition: left 0.6s ease;
+}
+.btn-pill:hover::before { left: 100%; }
+.btn-pill:hover { transform: translateY(-3px); }
+
+/* Nav underline link */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: #d4b26a;
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after { width: 100%; }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0a1928; }
+::-webkit-scrollbar-thumb { background: #1e2f42; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #3498db; }
+
+/* Orbiting role labels around the hero photo */
+.orbit-wrap { }
+
+.orbit-item {
+  position: absolute;
+  color: #d1d5db;
+  white-space: nowrap;
+  animation: orbit 18s linear infinite;
+}
+
+.orbit-1 { top: -6%; left: 50%; animation-delay: 0s; }
+.orbit-2 { top: 50%; right: -14%; animation-delay: -6s; }
+.orbit-3 { bottom: -6%; left: 20%; animation-delay: -12s; }
+
+@keyframes orbit {
+  0%   { transform: translate(0, 0) rotate(0deg) translateX(0); }
+  25%  { transform: translate(10px, -8px) rotate(2deg); }
+  50%  { transform: translate(0, 6px) rotate(0deg); }
+  75%  { transform: translate(-10px, -4px) rotate(-2deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
 }
