@@ -43,7 +43,7 @@ export default function MobileNav() {
                 ×
               </button>
             </div>
-            <nav className="flex-1 flex flex-col items-center justify-center gap-8">
+            <nav className="flex-1 flex flex-col items-center justify-center gap-4">
               {links.map((l, i) => (
                 <motion.div
                   key={l.href}
@@ -54,7 +54,8 @@ export default function MobileNav() {
                   <Link
                     href={l.href}
                     onClick={() => setOpen(false)}
-                    className="text-3xl font-semibold hover:text-blue-400 transition-colors"
+                    style={{ backgroundColor: "#111d2e" }}
+                    className="block px-10 py-4 rounded-full text-2xl font-semibold border border-white/10 hover:text-blue-400 hover:border-blue-500/40 transition-colors"
                   >
                     {l.label}
                   </Link>
