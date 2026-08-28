@@ -9,8 +9,7 @@ export default function RevealWords({ text, className }: { text: string; classNa
         <span key={i} className="inline-block overflow-hidden align-bottom mr-[0.3em]">
           <motion.span
             initial={{ y: "110%" }}
-            whileInView={{ y: "0%" }}
-            viewport={{ once: true }}
+            animate={{ y: "0%" }}
             transition={{ duration: 0.6, delay: i * 0.06, ease: [0.23, 1, 0.32, 1] }}
             className="inline-block"
           >

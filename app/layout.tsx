@@ -19,8 +19,8 @@ export const metadata: Metadata = {
   },
   description: "Software engineer and founder, building digital platforms with care and precision.",
   icons: {
-    icon: "https://res.cloudinary.com/dxiefklmt/image/upload/v1787844672/FB_favicon_pyhjsg.png",
-  },
+  icon: [{ url: "https://res.cloudinary.com/dxiefklmt/image/upload/v1787844672/FB_favicon_pyhjsg.png", type: "image/png" }],
+},
   openGraph: {
     title: "Favour Baraka",
     description: "Software engineer and founder, building digital platforms with care and precision.",
