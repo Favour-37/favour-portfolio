@@ -12,12 +12,15 @@ const PORTRAIT_URL =
   "https://res.cloudinary.com/dxiefklmt/image/upload/v1787825099/WhatsApp_Image_2026-08-27_at_11.24.00_h3ckml.jpg";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://favour-portfolio.vercel.app"),
+  metadataBase: new URL("https://favourbaraka.vercel.app"),
   title: {
     default: "Favour Baraka",
     template: "%s — Favour Baraka",
   },
   description: "Software engineer and founder, building digital platforms with care and precision.",
+  icons: {
+    icon: "https://res.cloudinary.com/dxiefklmt/image/upload/v1787844672/FB_favicon_pyhjsg.png",
+  },
   openGraph: {
     title: "Favour Baraka",
     description: "Software engineer and founder, building digital platforms with care and precision.",

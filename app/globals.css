@@ -1,9 +1,11 @@
 @import "tailwindcss";
 
 @layer base {
+  html {
+    background: #0a1928;
+  }
   body {
     background: linear-gradient(160deg, #0a1928 0%, #0d2136 45%, #0d2b3e 100%);
-    background-attachment: fixed;
     color: #f4f6f8;
     font-family: var(--font-inter), system-ui, sans-serif;
     overflow-x: hidden;

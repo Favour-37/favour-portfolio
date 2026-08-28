@@ -18,10 +18,10 @@ export default function MobileNav() {
       <button
         onClick={() => setOpen(true)}
         aria-label="Open menu"
-        className="w-10 h-10 flex flex-col items-center justify-center gap-1.5"
+        className="w-12 h-12 flex flex-col items-center justify-center gap-2"
       >
-        <span className="w-6 h-px bg-white" />
-        <span className="w-6 h-px bg-white" />
+        <span className="w-7 h-[2px] bg-white" />
+        <span className="w-7 h-[2px] bg-white" />
       </button>
 
       <AnimatePresence>
@@ -30,14 +30,14 @@ export default function MobileNav() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[60] bg-[#0a1928]/98 backdrop-blur-xl flex flex-col"
+            transition={{ duration: 0.15 }}
+            className="fixed inset-0 z-[60] bg-[#070d16] flex flex-col"
           >
             <div className="flex justify-end p-6">
               <button
                 onClick={() => setOpen(false)}
                 aria-label="Close menu"
-                className="w-10 h-10 flex items-center justify-center text-2xl"
+                className="w-12 h-12 flex items-center justify-center text-4xl leading-none"
               >
                 ×
               </button>
@@ -48,7 +48,7 @@ export default function MobileNav() {
                   key={l.href}
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 + i * 0.06 }}
+                  transition={{ delay: 0.05 + i * 0.04 }}
                 >
                   <Link
                     href={l.href}
