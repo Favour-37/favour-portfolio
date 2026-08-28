@@ -31,7 +31,8 @@ export default function MobileNav() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.15 }}
-            className="fixed inset-0 z-[60] bg-[#070d16] flex flex-col"
+            style={{ backgroundColor: "#070d16" }}
+            className="fixed inset-0 z-[60] flex flex-col"
           >
             <div className="flex justify-end p-6">
               <button
@@ -45,13 +46,19 @@ export default function MobileNav() {
             <nav className="flex-1 flex flex-col items-center justify-center gap-8">
               {links.map((l, i) => (
                 <motion.div
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  exit={{ opacity: 0 }}
-  transition={{ duration: 0.15 }}
-  style={{ backgroundColor: "#070d16" }}
-  className="fixed inset-0 z-[60] flex flex-col"
-></motion.div>
+                  key={l.href}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.05 + i * 0.04 }}
+                >
+                  <Link
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    className="text-3xl font-semibold hover:text-blue-400 transition-colors"
+                  >
+                    {l.label}
+                  </Link>
+                </motion.div>
               ))}
             </nav>
           </motion.div>
