@@ -16,53 +16,57 @@ export default function MobileNav() {
   return (
     <div className="md:hidden">
       <button
-        onClick={() => setOpen(true)}
-        aria-label="Open menu"
-        className="w-12 h-12 flex flex-col items-center justify-center gap-2"
+        onClick={() => setOpen(!open)}
+        aria-label="Toggle menu"
+        className="w-12 h-12 flex flex-col items-center justify-center gap-2 relative z-[70]"
       >
-        <span className="w-7 h-[2px] bg-white" />
-        <span className="w-7 h-[2px] bg-white" />
+        <motion.span
+          animate={{ rotate: open ? 45 : 0, y: open ? 5 : 0 }}
+          className="w-7 h-[2px] bg-white block"
+        />
+        <motion.span
+          animate={{ rotate: open ? -45 : 0, y: open ? -5 : 0 }}
+          className="w-7 h-[2px] bg-white block"
+        />
       </button>
 
       <AnimatePresence>
         {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.15 }}
-            style={{ backgroundColor: "#070d16" }}
-            className="fixed inset-0 z-[60] flex flex-col"
-          >
-            <div className="flex justify-end p-6">
-              <button
-                onClick={() => setOpen(false)}
-                aria-label="Close menu"
-                className="w-12 h-12 flex items-center justify-center text-4xl leading-none"
-              >
-                ×
-              </button>
-            </div>
-            <nav className="flex-1 flex flex-col items-center justify-center gap-4">
+          <>
+            {/* Scrim behind the dropdown */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setOpen(false)}
+              style={{ backgroundColor: "rgba(5, 9, 15, 0.7)" }}
+              className="fixed inset-0 z-[60]"
+            />
+
+            {/* Dropdown panel */}
+            <motion.div
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
+              style={{ backgroundColor: "#0d1b2b" }}
+              className="fixed top-[76px] left-4 right-4 z-[65] rounded-2xl border border-white/10 shadow-2xl overflow-hidden"
+            >
               {links.map((l, i) => (
-                <motion.div
+                <Link
                   key={l.href}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.05 + i * 0.04 }}
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className={`block px-6 py-4 text-lg font-medium hover:bg-white/5 hover:text-blue-400 transition-colors ${
+                    i !== links.length - 1 ? "border-b border-white/5" : ""
+                  }`}
                 >
-                  <Link
-                    href={l.href}
-                    onClick={() => setOpen(false)}
-                    style={{ backgroundColor: "#111d2e" }}
-                    className="block px-10 py-4 rounded-full text-2xl font-semibold border border-white/10 hover:text-blue-400 hover:border-blue-500/40 transition-colors"
-                  >
-                    {l.label}
-                  </Link>
-                </motion.div>
+                  {l.label}
+                </Link>
               ))}
-            </nav>
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </div>
