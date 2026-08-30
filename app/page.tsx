@@ -1,14 +1,14 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import Magnetic from "@/components/Magnetic";
 import RevealWords from "@/components/RevealWords";
 import ParallaxGlow from "@/components/ParallaxGlow";
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.23, 1, 0.32, 1] as const } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.23, 1, 0.32, 1] } },
 };
 
 export default function Home() {
@@ -35,10 +35,10 @@ export default function Home() {
           </h1>
 
           <motion.p initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
-  className="text-lg text-gray-400 max-w-md leading-relaxed mb-10">
-  Full-stack developer. Founder of Pneubah. President of Dominion Outreach. I build because
-  I love making ideas real — and because I believe the things we build should matter.
-</motion.p>
+            className="text-lg text-gray-400 max-w-md leading-relaxed mb-10">
+            Full-stack developer. Founder of Pneubah. President of Dominion Outreach. I build because
+            I love making ideas real — and because I believe the things we build should matter.
+          </motion.p>
 
           <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
             className="flex flex-wrap gap-4">
@@ -59,24 +59,24 @@ export default function Home() {
           initial={{ opacity: 0, scale: 0.94 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] as const }}
+          transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
           className="relative flex items-center justify-center"
         >
           <div className="orbit-wrap relative w-64 sm:w-72 md:w-80 h-64 sm:h-72 md:h-80">
             <div className="absolute inset-6 rounded-[2rem] overflow-hidden panel">
-             <Image
-  src="https://res.cloudinary.com/dxiefklmt/image/upload/v1787825099/WhatsApp_Image_2026-08-27_at_11.24.00_h3ckml.jpg"
-  alt="Favour Baraka"
-  fill
-  sizes="320px"
-  className="object-cover"
-  priority
-/>
+              <Image
+                src="https://res.cloudinary.com/dxiefklmt/image/upload/v1787825099/WhatsApp_Image_2026-08-27_at_11.24.00_h3ckml.jpg"
+                alt="Favour Baraka"
+                fill
+                sizes="320px"
+                className="object-cover"
+                priority
+              />
               <motion.div
                 initial={{ scaleX: 1 }}
                 whileInView={{ scaleX: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.9, delay: 0.2, ease: [0.76, 0, 0.24, 1] as const }}
+                transition={{ duration: 0.9, delay: 0.2, ease: [0.76, 0, 0.24, 1] }}
                 style={{ transformOrigin: "right" }}
                 className="absolute inset-0 z-10 bg-gradient-to-r from-blue-600 to-purple-600"
               />
@@ -170,30 +170,30 @@ export default function Home() {
       </section>
 
       {/* BEYOND THE CODE */}
-<section className="relative max-w-4xl mx-auto px-6 pb-28">
-  <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
-    className="panel rounded-2xl overflow-hidden grid sm:grid-cols-5">
-    <div className="sm:col-span-2 relative h-56 sm:h-auto">
-      <Image
-  src="https://res.cloudinary.com/dxiefklmt/image/upload/v1787825099/WhatsApp_Image_2026-08-27_at_11.33.46_h9mqxx.jpg"
-  alt="Favour preaching"
-  fill
-  sizes="(max-width: 640px) 100vw, 40vw"
-  className="object-cover"
-/>
-    </div>
-    <div className="sm:col-span-3 p-10 flex flex-col justify-center">
-      <h2 className="text-xl font-semibold mb-4">Beyond the code</h2>
-      <p className="text-gray-400 leading-relaxed mb-6">
-        I&apos;m also the President of Dominion Outreach, a discipleship ministry helping young
-        believers find their footing after saying yes to Jesus — online and on the street.
-      </p>
-      <Link href="/about" className="text-blue-400 text-sm font-medium hover:underline w-fit">
-        More about me →
-      </Link>
-    </div>
-  </motion.div>
-</section>
+      <section className="relative max-w-4xl mx-auto px-6 pb-28">
+        <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
+          className="panel rounded-2xl overflow-hidden grid sm:grid-cols-5">
+          <div className="sm:col-span-2 relative h-56 sm:h-auto">
+            <Image
+              src="https://res.cloudinary.com/dxiefklmt/image/upload/v1787825099/WhatsApp_Image_2026-08-27_at_11.33.46_h9mqxx.jpg"
+              alt="Favour preaching"
+              fill
+              sizes="(max-width: 640px) 100vw, 40vw"
+              className="object-cover"
+            />
+          </div>
+          <div className="sm:col-span-3 p-10 flex flex-col justify-center">
+            <h2 className="text-xl font-semibold mb-4">Beyond the code</h2>
+            <p className="text-gray-400 leading-relaxed mb-6">
+              I&apos;m also the President of Dominion Outreach, a discipleship ministry helping young
+              believers find their footing after saying yes to Jesus — online and on the street.
+            </p>
+            <Link href="/about" className="text-blue-400 text-sm font-medium hover:underline w-fit">
+              More about me →
+            </Link>
+          </div>
+        </motion.div>
+      </section>
 
       {/* CLOSING */}
       <section className="relative max-w-4xl mx-auto px-6 pb-28 text-center">
@@ -210,4 +210,3 @@ export default function Home() {
     </div>
   );
 }
-
