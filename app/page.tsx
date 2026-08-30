@@ -35,10 +35,10 @@ export default function Home() {
           </h1>
 
           <motion.p initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
-            className="text-lg text-gray-400 max-w-md leading-relaxed mb-10">
-            {/* PLACEHOLDER — awaiting your bio */}
-            Favour Baraka. Full-stack engineer. Founder of Pneubah. President of Dominion Outreach.
-          </motion.p>
+  className="text-lg text-gray-400 max-w-md leading-relaxed mb-10">
+  Full-stack developer. Founder of Pneubah. President of Dominion Outreach. I build because
+  I love making ideas real — and because I believe the things we build should matter.
+</motion.p>
 
           <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
             className="flex flex-wrap gap-4">
@@ -160,7 +160,7 @@ export default function Home() {
       <section className="relative max-w-4xl mx-auto px-6 pb-28">
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
           className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-gray-500 font-mono border-t border-white/5 pt-10">
-          {["TypeScript", "React", "Next.js", "NestJS", "Rust"].map((tech, i, arr) => (
+          {["TypeScript", "React", "Next.js", "NestJS", "Rust", "PostgreSQL", "Supabase"].map((tech, i, arr) => (
             <span key={tech} className="flex items-center gap-3">
               <span className="hover:text-gray-300 transition-colors">{tech}</span>
               {i < arr.length - 1 && <span className="text-gray-700">·</span>}
