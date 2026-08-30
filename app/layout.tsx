@@ -19,8 +19,11 @@ export const metadata: Metadata = {
   },
   description: "Software engineer and founder, building digital platforms with care and precision.",
   icons: {
-  icon: [{ url: "https://res.cloudinary.com/dxiefklmt/image/upload/v1787844672/FB_favicon_pyhjsg.png", type: "image/png" }],
-},
+    icon: [{ url: "https://res.cloudinary.com/dxiefklmt/image/upload/v1787844672/FB_favicon_pyhjsg.png", type: "image/png" }],
+  },
+  verification: {
+    google: "5AHVH-sW_1U9wu-Gs2cGxutI3fgXHlT2AYR8FmdsZvM",
+  },
   openGraph: {
     title: "Favour Baraka",
     description: "Software engineer and founder, building digital platforms with care and precision.",
@@ -76,4 +79,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
-
