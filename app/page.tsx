@@ -80,8 +80,6 @@ export default function Home() {
         priority
       />
     </motion.div>
-
-    {/* Shutter strips */}
     <div className="absolute inset-0 z-10 flex">
       {[0, 1, 2, 3].map((i) => (
         <motion.div

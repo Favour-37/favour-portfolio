@@ -3,13 +3,11 @@ import { Inter } from "next/font/google";
 import Link from "next/link";
 import PageTransition from "@/components/PageTransition";
 import ScrollProgress from "@/components/ScrollProgress";
+import RouteProgress from "@/components/RouteProgress";
 import MobileNav from "@/components/MobileNav";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-
-const PORTRAIT_URL =
-  "https://res.cloudinary.com/dxiefklmt/image/upload/v1787825099/WhatsApp_Image_2026-08-27_at_11.24.00_h3ckml.jpg";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://favourbaraka.vercel.app"),
@@ -27,14 +25,12 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Favour Baraka",
     description: "Software engineer and founder, building digital platforms with care and precision.",
-    images: [{ url: PORTRAIT_URL }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Favour Baraka",
     description: "Software engineer and founder, building digital platforms with care and precision.",
-    images: [PORTRAIT_URL],
   },
 };
 
@@ -47,6 +43,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={inter.variable}>
       <body className="antialiased">
         <ScrollProgress />
+        <RouteProgress />
+        <div className="grain-overlay" />
         <header className="fixed top-0 left-0 w-full z-50 border-b border-white/5 bg-[#0a1928]/70 backdrop-blur-xl">
           <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
             <Link href="/" className="text-sm font-semibold tracking-wide">
