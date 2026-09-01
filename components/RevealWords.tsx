@@ -6,16 +6,15 @@ export default function RevealWords({ text, className }: { text: string; classNa
   return (
     <span className={className}>
       {words.map((word, i) => (
-        <span key={i} className="inline-block overflow-hidden align-bottom mr-[0.3em]">
-          <motion.span
-            initial={{ y: "110%" }}
-            animate={{ y: "0%" }}
-            transition={{ duration: 0.6, delay: i * 0.06, ease: [0.23, 1, 0.32, 1] }}
-            className="inline-block"
-          >
-            {word}
-          </motion.span>
-        </span>
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, y: 12, filter: "blur(6px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.5, delay: i * 0.07, ease: [0.23, 1, 0.32, 1] }}
+          className="inline-block mr-[0.28em]"
+        >
+          {word}
+        </motion.span>
       ))}
     </span>
   );
