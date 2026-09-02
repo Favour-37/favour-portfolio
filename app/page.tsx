@@ -26,14 +26,14 @@ export default function Home() {
           </motion.p>
 
           <h1 className="text-5xl sm:text-6xl font-bold leading-[1.12] mb-8">
-            <RevealWords text="I build things that" />
-            <br />
-            <RevealWords
-              text="hold up under real use."
-              className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
-            />
-          </h1>
-
+  <RevealWords text="I build things that" />
+  <br />
+  <RevealWords
+    text="hold up under real use."
+    delay={0.15}
+    className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+  />
+</h1>
           <motion.p initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
             className="text-lg text-gray-400 max-w-md leading-relaxed mb-10">
             Full-stack developer. Founder of Pneubah. President of Dominion Outreach. I build because
