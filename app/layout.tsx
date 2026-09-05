@@ -10,12 +10,12 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://favourbaraka.vercel.app"),
+  metadataBase: new URL("https://favourbaraka.co.ke"),
   title: {
     default: "Favour Baraka",
     template: "%s — Favour Baraka",
   },
-  description: "Software engineer and founder, building digital platforms with care and precision.",
+  description: "Full-stack developer building things that hold up under real use — and, by God's grace, still just getting started.",
   icons: {
     icon: [{ url: "https://res.cloudinary.com/dxiefklmt/image/upload/v1787844672/FB_favicon_pyhjsg.png", type: "image/png" }],
   },
@@ -24,13 +24,13 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Favour Baraka",
-    description: "Software engineer and founder, building digital platforms with care and precision.",
+    description: "Full-stack developer building things that hold up under real use — and, by God's grace, still just getting started.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Favour Baraka",
-    description: "Software engineer and founder, building digital platforms with care and precision.",
+    description: "Full-stack developer building things that hold up under real use — and, by God's grace, still just getting started.",
   },
 };
 
