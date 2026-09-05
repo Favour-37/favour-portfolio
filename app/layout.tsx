@@ -15,22 +15,26 @@ export const metadata: Metadata = {
     default: "Favour Baraka",
     template: "%s — Favour Baraka",
   },
-  description: "Full-stack developer building things that hold up under real use — and, by God's grace, still just getting started.",
+  description: "Favour Baraka is a full-stack developer and founder based in Nairobi, Kenya, building things that hold up under real use.",
   icons: {
-    icon: [{ url: "https://res.cloudinary.com/dxiefklmt/image/upload/v1787844672/FB_favicon_pyhjsg.png", type: "image/png" }],
+    icon: [{
+      url: "https://res.cloudinary.com/dxiefklmt/image/upload/w_192,h_192,c_fill,f_png/v1787844672/FB_favicon_pyhjsg.png",
+      type: "image/png",
+      sizes: "192x192",
+    }],
   },
   verification: {
     google: "5AHVH-sW_1U9wu-Gs2cGxutI3fgXHlT2AYR8FmdsZvM",
   },
   openGraph: {
     title: "Favour Baraka",
-    description: "Full-stack developer building things that hold up under real use — and, by God's grace, still just getting started.",
+    description: "Favour Baraka is a full-stack developer and founder based in Nairobi, Kenya, building things that hold up under real use.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Favour Baraka",
-    description: "Full-stack developer building things that hold up under real use — and, by God's grace, still just getting started.",
+    description: "Favour Baraka is a full-stack developer and founder based in Nairobi, Kenya, building things that hold up under real use.",
   },
 };
 
@@ -42,6 +46,31 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={inter.variable}>
       <body className="antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Favour Baraka",
+              jobTitle: "Full-Stack Developer",
+              url: "https://favourbaraka.co.ke",
+              sameAs: [
+                "https://github.com/Favour-37",
+                "https://www.linkedin.com/in/favour-baraka-a27490408/",
+                "https://x.com/favour35049",
+              ],
+              knowsAbout: [
+                "Software Engineering",
+                "Full-Stack Development",
+                "Next.js",
+                "React",
+                "TypeScript",
+                "NestJS",
+              ],
+            }),
+          }}
+        />
         <ScrollProgress />
         <RouteProgress />
         <div className="grain-overlay" />

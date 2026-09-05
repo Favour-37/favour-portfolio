@@ -1,12 +1,12 @@
 "use client";
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import Magnetic from "@/components/Magnetic";
 import RevealWords from "@/components/RevealWords";
 import ParallaxGlow from "@/components/ParallaxGlow";
 
-const fadeUp: Variants = {
+const fadeUp = {
   hidden: { opacity: 0, y: 24 },
   show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.23, 1, 0.32, 1] } },
 };
@@ -26,18 +26,17 @@ export default function Home() {
           </motion.p>
 
           <h1 className="text-5xl sm:text-6xl font-bold leading-[1.12] mb-8">
-  <RevealWords text="I build things that" />
-  <br />
-  <RevealWords
-    text="hold up under real use."
-    delay={0.15}
-    className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
-  />
-</h1>
+            <RevealWords text="I build things that" />
+            <br />
+            <RevealWords
+              text="hold up under real use."
+              className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+            />
+          </h1>
+
           <motion.p initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
             className="text-lg text-gray-400 max-w-md leading-relaxed mb-10">
-            Full-stack developer. Founder of Pneubah. President of Dominion Outreach. I build because
-            I love making ideas real — and because I believe the things we build should matter.
+            Favour Baraka — full-stack developer and founder, building digital platforms with care and precision.
           </motion.p>
 
           <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
@@ -63,40 +62,40 @@ export default function Home() {
           className="relative flex items-center justify-center"
         >
           <div className="orbit-wrap relative w-64 sm:w-72 md:w-80 h-64 sm:h-72 md:h-80">
-  <div className="absolute inset-6 rounded-[2rem] overflow-hidden panel">
-    <motion.div
-      initial={{ scale: 1.15, filter: "blur(12px)" }}
-      whileInView={{ scale: 1, filter: "blur(0px)" }}
-      viewport={{ once: true }}
-      transition={{ duration: 1.1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-      className="absolute inset-0"
-    >
-      <Image
-        src="https://res.cloudinary.com/dxiefklmt/image/upload/v1787825099/WhatsApp_Image_2026-08-27_at_11.24.00_h3ckml.jpg"
-        alt="Favour Baraka"
-        fill
-        sizes="320px"
-        className="object-cover"
-        priority
-      />
-    </motion.div>
-    <div className="absolute inset-0 z-10 flex">
-      {[0, 1, 2, 3].map((i) => (
-        <motion.div
-          key={i}
-          initial={{ y: "0%" }}
-          whileInView={{ y: i % 2 === 0 ? "-100%" : "100%" }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.15 + i * 0.08, ease: [0.76, 0, 0.24, 1] }}
-          className="flex-1 bg-gradient-to-br from-blue-600 to-purple-600"
-        />
-      ))}
-    </div>
-  </div>
-  <span className="orbit-item orbit-1 text-xs font-mono px-3 py-1.5 rounded-full panel">Engineer</span>
-  <span className="orbit-item orbit-2 text-xs font-mono px-3 py-1.5 rounded-full panel">Founder</span>
-  <span className="orbit-item orbit-3 text-xs font-mono px-3 py-1.5 rounded-full panel">President</span>
-</div>
+            <div className="absolute inset-6 rounded-[2rem] overflow-hidden panel">
+              <motion.div
+                initial={{ scale: 1.15, filter: "blur(12px)" }}
+                whileInView={{ scale: 1, filter: "blur(0px)" }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src="https://res.cloudinary.com/dxiefklmt/image/upload/v1787825099/WhatsApp_Image_2026-08-27_at_11.24.00_h3ckml.jpg"
+                  alt="Favour Baraka"
+                  fill
+                  sizes="320px"
+                  className="object-cover"
+                  priority
+                />
+              </motion.div>
+              <div className="absolute inset-0 z-10 flex">
+                {[0, 1, 2, 3].map((i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ y: "0%" }}
+                    whileInView={{ y: i % 2 === 0 ? "-100%" : "100%" }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7, delay: 0.15 + i * 0.08, ease: [0.76, 0, 0.24, 1] }}
+                    className="flex-1 bg-gradient-to-br from-blue-600 to-purple-600"
+                  />
+                ))}
+              </div>
+            </div>
+            <span className="orbit-item orbit-1 text-xs font-mono px-3 py-1.5 rounded-full panel">Engineer</span>
+            <span className="orbit-item orbit-2 text-xs font-mono px-3 py-1.5 rounded-full panel">Founder</span>
+            <span className="orbit-item orbit-3 text-xs font-mono px-3 py-1.5 rounded-full panel">President</span>
+          </div>
         </motion.div>
       </section>
 
