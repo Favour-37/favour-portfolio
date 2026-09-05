@@ -29,6 +29,28 @@ const contacts = [
     ),
   },
   {
+    label: "LinkedIn",
+    sub: "in/favour-baraka",
+    href: "https://www.linkedin.com/in/favour-baraka-a27490408/",
+    external: true,
+    icon: (
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M20.45 20.45h-3.56v-5.58c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.68H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45z" />
+      </svg>
+    ),
+  },
+  {
+    label: "X",
+    sub: "@favour35049",
+    href: "https://x.com/favour35049",
+    external: true,
+    icon: (
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.22-6.82-5.97 6.82H1.66l7.73-8.83L1.25 2.25h6.83l4.72 6.24 5.44-6.24zm-1.16 17.52h1.83L7.02 4.13H5.06l12.02 15.64z" />
+      </svg>
+    ),
+  },
+  {
     label: "GitHub",
     sub: "github.com/Favour-37",
     href: "https://github.com/Favour-37",
@@ -46,7 +68,7 @@ export default function ContactPage() {
     <div className="relative">
       <div className="glow glow-purple w-[450px] h-[450px] top-0 left-1/2 -translate-x-1/2" />
 
-      <div className="relative max-w-2xl mx-auto px-6 py-24 text-center">
+      <div className="relative max-w-3xl mx-auto px-6 py-24 text-center">
         <motion.p initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
           className="text-sm text-blue-400 font-mono mb-4">
           Contact
@@ -64,9 +86,9 @@ export default function ContactPage() {
         </motion.p>
 
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
-          className="grid sm:grid-cols-3 gap-6 text-left">
+          className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 text-left">
           {contacts.map((c) => (
-            <a
+           <a 
               key={c.label}
               href={c.href}
               target={c.external ? "_blank" : undefined}
