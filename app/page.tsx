@@ -130,6 +130,40 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* WHAT I BUILD */}
+<section className="relative max-w-4xl mx-auto px-6 pb-28">
+  <motion.h2 initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
+    className="title-underline text-2xl font-semibold mb-6">
+    What I build
+  </motion.h2>
+
+  <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
+    className="panel rounded-2xl p-8">
+    <p className="text-gray-400 leading-relaxed mb-5 max-w-lg">
+      Websites and digital platforms designed around what you actually need.
+    </p>
+
+    <div className="flex flex-wrap gap-x-3 gap-y-2 text-sm text-gray-500 font-mono mb-6">
+      {["Business websites", "Portfolios", "E-commerce", "Booking systems", "Custom web applications"].map((item, i, arr) => (
+        <span key={item} className="flex items-center gap-3">
+          <span className="hover:text-gray-300 transition-colors">{item}</span>
+          {i < arr.length - 1 && <span className="text-gray-700">·</span>}
+        </span>
+      ))}
+    </div>
+
+    <p className="text-gray-400 leading-relaxed mb-6 max-w-lg">
+      From a simple online presence to a complex platform, I can help turn the idea into something real.
+    </p>
+
+    <Magnetic>
+      <Link href="/contact" className="text-blue-400 text-sm font-medium hover:underline w-fit inline-flex items-center gap-1">
+        Have something in mind? → Let&apos;s talk
+      </Link>
+    </Magnetic>
+  </motion.div>
+</section>
+
       {/* HOW I BUILD */}
       <section className="relative max-w-4xl mx-auto px-6 pb-28">
         <motion.h2 initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
