@@ -69,7 +69,7 @@ export default function DominionCaseStudy() {
         </ul>
       </motion.div>
 
-      <a href="https://favour-37.github.io/Dominion-Outreach/" target="_blank" rel="noopener noreferrer"
+      <a href="https://dominionoutreach.vercel.app/" target="_blank" rel="noopener noreferrer"
         className="relative btn-pill inline-block px-7 py-3 bg-blue-600 hover:bg-blue-500 text-sm font-medium">
         Visit the live site
       </a>
