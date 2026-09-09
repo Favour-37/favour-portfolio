@@ -1,11 +1,15 @@
 "use client";
 import { motion } from "framer-motion";
 
-const DIRECTIONS = [
-  { x: -50, y: 0 },
-  { x: 50, y: 0 },
-  { x: 0, y: 50 },
-];
+function getOffset(i: number) {
+  const angle = (i * 137.5 * Math.PI) / 180;
+  const radius = 60;
+  return {
+    x: Math.round(Math.cos(angle) * radius),
+    y: Math.round(Math.sin(angle) * radius * 0.6),
+    rotate: (i % 2 === 0 ? 1 : -1) * (8 + (i % 3) * 4),
+  };
+}
 
 export default function ConvergeWords({
   text,
@@ -18,25 +22,28 @@ export default function ConvergeWords({
 }) {
   const words = text.split(" ");
   return (
-    <span className={className}>
+    <>
       {words.map((word, i) => {
-        const dir = DIRECTIONS[i % DIRECTIONS.length];
+        const { x, y, rotate } = getOffset(i);
         return (
           <motion.span
             key={i}
-            initial={{ opacity: 0, x: dir.x, y: dir.y }}
-            animate={{ opacity: 1, x: 0, y: 0 }}
+            initial={{ opacity: 0, x, y, rotate, scale: 0.7 }}
+            animate={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
             transition={{
-              duration: 0.7,
-              delay: baseDelay + i * 0.08,
-              ease: [0.16, 1, 0.3, 1],
+              opacity: { duration: 0.5, delay: baseDelay + i * 0.09 },
+              x: { type: "spring", stiffness: 120, damping: 14, delay: baseDelay + i * 0.09 },
+              y: { type: "spring", stiffness: 120, damping: 14, delay: baseDelay + i * 0.09 },
+              rotate: { type: "spring", stiffness: 100, damping: 12, delay: baseDelay + i * 0.09 },
+              scale: { type: "spring", stiffness: 140, damping: 13, delay: baseDelay + i * 0.09 },
             }}
-            className="inline-block mr-[0.28em]"
+            className={`inline-block mr-[0.28em] ${className ?? ""}`}
+            style={{ willChange: "transform, opacity" }}
           >
             {word}
           </motion.span>
         );
       })}
-    </span>
+    </>
   );
 }
