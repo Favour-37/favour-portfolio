@@ -141,3 +141,24 @@
   75%  { transform: translate(-2%, -2%); }
   100% { transform: translate(0, 0); }
 }
+
+/* Mobile performance: backdrop-blur and large blurred glows are the
+   primary cause of scroll jank on mid-range phones. Solid fallback
+   on mobile keeps the visual look close, at near-zero render cost. */
+@media (max-width: 767px) {
+  .panel {
+    backdrop-filter: none;
+    background: rgba(20, 30, 45, 0.75);
+  }
+  html[data-theme="light"] .panel {
+    background: rgba(255, 255, 255, 0.85);
+  }
+  .glow {
+    filter: blur(40px);
+    opacity: 0.6;
+  }
+}
+
+.panel {
+  contain: layout paint;
+}

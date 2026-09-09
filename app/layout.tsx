@@ -6,6 +6,9 @@ import ScrollProgress from "@/components/ScrollProgress";
 import RouteProgress from "@/components/RouteProgress";
 import MobileNav from "@/components/MobileNav";
 import "./globals.css";
+import Lenis from "lenis";
+import SmoothScroll from "@/components/SmoothScroll";
+import IntroSplash from "@/components/IntroSplash";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -73,6 +76,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <ScrollProgress />
         <RouteProgress />
+        <ScrollProgress />
+
+        <IntroSplash />
+
         <div className="grain-overlay" />
         <header className="fixed top-0 left-0 w-full z-50 border-b border-white/5 bg-[#0a1928]/70 backdrop-blur-xl">
           <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
@@ -90,8 +97,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </header>
 
         <main className="pt-20 min-h-screen relative z-10">
-          <PageTransition>{children}</PageTransition>
-        </main>
+  <SmoothScroll>
+    <PageTransition>{children}</PageTransition>
+  </SmoothScroll>
+</main>
 
         <footer className="border-t border-white/5 py-12 text-sm text-gray-500">
           <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">

@@ -5,6 +5,9 @@ export default function ParallaxGlow({ className }: { className: string }) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const isDesktop = window.matchMedia("(pointer: fine)").matches;
+    if (!isDesktop) return;
+
     const handleMove = (e: MouseEvent) => {
       const el = ref.current;
       if (!el) return;

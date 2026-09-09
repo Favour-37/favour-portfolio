@@ -3,7 +3,7 @@ import { motion, Variants } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import Magnetic from "@/components/Magnetic";
-import RevealWords from "@/components/RevealWords";
+import ConvergeWords from "@/components/ConvergeWords";
 import ParallaxGlow from "@/components/ParallaxGlow";
 
 const fadeUp: Variants = {
@@ -26,13 +26,14 @@ export default function Home() {
           </motion.p>
 
           <h1 className="text-5xl sm:text-6xl font-bold leading-[1.12] mb-8">
-            <RevealWords text="I build things that" />
-            <br />
-            <RevealWords
-              text="hold up under real use."
-              className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
-            />
-          </h1>
+  <ConvergeWords text="I build things that" baseDelay={1.9} />
+  <br />
+  <ConvergeWords
+    text="hold up under real use."
+    baseDelay={2.22}
+    className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+  />
+</h1>
 
           <motion.p initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
             className="text-lg text-gray-400 max-w-md leading-relaxed mb-10">
