@@ -41,6 +41,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
       e.stopPropagation();
       pendingHref.current = href;
       setPhase("cover");
+      window.dispatchEvent(new CustomEvent("app-navigate"));
     };
     document.addEventListener("click", handleClick, true);
     return () => document.removeEventListener("click", handleClick, true);

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 
@@ -12,6 +12,11 @@ const links = [
 
 export default function MobileNav() {
   const [open, setOpen] = useState(false);
+  useEffect(() => {
+  const closeMenu = () => setOpen(false);
+  window.addEventListener("app-navigate", closeMenu);
+  return () => window.removeEventListener("app-navigate", closeMenu);
+}, []);
 
   return (
     <div className="md:hidden">
