@@ -1,12 +1,18 @@
 "use client";
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const ROWS = 4;
 const GRADIENT = "linear-gradient(120deg, #ef233c 0%, #2563eb 35%, #7c3aed 65%, #f5b301 100%)";
 
+const HOLD_DURATION = 0.9;
+const REVEAL_DURATION = 0.45;
+const STAGGER_STEP = 0.02;
+
+type Phase = "hold" | "reveal" | "done";
+
 export default function IntroSplash() {
-  const [phase, setPhase] = useState<"logo" | "grid" | "done">("logo");
+  const [phase, setPhase] = useState<Phase>("hold");
   const [cols, setCols] = useState(14);
 
   useEffect(() => {
@@ -15,8 +21,12 @@ export default function IntroSplash() {
   }, []);
 
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase("grid"), 900);
-    const t2 = setTimeout(() => setPhase("done"), 900 + (cols - 1) * 20 + 700);
+    const maxStagger = (cols - 1) * STAGGER_STEP;
+    const t1 = setTimeout(() => setPhase("reveal"), HOLD_DURATION * 1000);
+    const t2 = setTimeout(
+      () => setPhase("done"),
+      (HOLD_DURATION + REVEAL_DURATION + maxStagger) * 1000
+    );
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
@@ -26,51 +36,44 @@ export default function IntroSplash() {
   if (phase === "done") return null;
 
   return (
-    <div className="fixed inset-0 z-[200] pointer-events-none">
-      <AnimatePresence>
-        {phase === "logo" && (
-          <motion.div
-            key="logo"
-            initial={{ opacity: 0, y: -30, scale: 1.08 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute inset-0 flex items-center justify-center"
-            style={{ background: "#0a1928" }}
-          >
-            <span className="text-2xl font-semibold tracking-wide text-white">
-              Favour Baraka
-            </span>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {phase === "grid" && (
-        <div className="absolute inset-0 flex flex-col">
-          {Array.from({ length: ROWS }).map((_, row) => (
-            <div key={row} className="flex flex-1">
-              {Array.from({ length: cols }).map((_, col) => (
-                <motion.div
-                  key={col}
-                  initial={{ scaleX: 1 }}
-                  animate={{ scaleX: 0 }}
-                  transition={{
-                    duration: 0.5,
-                    delay: col * 0.02,
-                    ease: [0.76, 0, 0.24, 1],
-                  }}
-                  style={{
-                    transformOrigin: row % 2 === 0 ? "left" : "right",
-                    backgroundImage: GRADIENT,
-                    backgroundSize: `${cols * 100}% ${ROWS * 100}%`,
-                    backgroundPosition: `${(col / (cols - 1)) * 100}% ${(row / (ROWS - 1)) * 100}%`,
-                  }}
-                  className="flex-1 h-full"
-                />
-              ))}
-            </div>
+    <div className="fixed inset-0 z-[200] pointer-events-none flex flex-col">
+      {Array.from({ length: ROWS }).map((_, row) => (
+        <div key={row} className="flex flex-1">
+          {Array.from({ length: cols }).map((_, col) => (
+            <motion.div
+              key={col}
+              initial={{ scaleX: 1 }}
+              animate={{ scaleX: phase === "reveal" ? 0 : 1 }}
+              transition={{
+                duration: REVEAL_DURATION,
+                delay: phase === "reveal" ? col * STAGGER_STEP : 0,
+                ease: [0.76, 0, 0.24, 1],
+              }}
+              style={{
+                transformOrigin: row % 2 === 0 ? "left" : "right",
+                backgroundImage: GRADIENT,
+                backgroundSize: `${cols * 100}% ${ROWS * 100}%`,
+                backgroundPosition: `${(col / (cols - 1)) * 100}% ${(row / (ROWS - 1)) * 100}%`,
+              }}
+              className="flex-1 h-full"
+            />
           ))}
         </div>
+      ))}
+
+      {phase === "hold" && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.3 }}
+          className="absolute inset-0 flex items-center justify-center"
+        >
+          <img
+            src="https://res.cloudinary.com/dxiefklmt/image/upload/w_192,h_192,c_fill,f_png/v1787844672/FB_favicon_pyhjsg.png"
+            alt="Favour Baraka"
+            className="w-16 h-16 rounded-full"
+          />
+        </motion.div>
       )}
     </div>
   );

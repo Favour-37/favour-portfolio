@@ -1,33 +1,79 @@
 "use client";
-import { AnimatePresence, motion } from "framer-motion";
-import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
 
 const ROWS = 4;
 const GRADIENT = "linear-gradient(120deg, #ef233c 0%, #2563eb 35%, #7c3aed 65%, #f5b301 100%)";
 
+const COVER_DURATION = 0.45;
+const REVEAL_DURATION = 0.45;
+const STAGGER_STEP = 0.02;
+const HOLD_DURATION = 0.55;
+
+type Phase = "idle" | "cover" | "hold" | "reveal";
+
 export default function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isFirst = useRef(true);
-  const [showShutter, setShowShutter] = useState(false);
+  const router = useRouter();
+  const [phase, setPhase] = useState<Phase>("idle");
   const [cols, setCols] = useState(14);
+  const pendingHref = useRef<string | null>(null);
 
   useEffect(() => {
     const isDesktop = window.matchMedia("(min-width: 768px)").matches;
     setCols(isDesktop ? 14 : 7);
   }, []);
 
+  // Capture phase runs BEFORE Next.js Link's own click handler, so we can
+  // pause navigation and cover the screen first — this is what eliminates
+  // the flash of new content you were seeing.
   useEffect(() => {
-    if (isFirst.current) {
-      isFirst.current = false;
-      return;
-    }
-    setShowShutter(true);
-    const maxDelay = (cols - 1) * 0.025;
-    const totalMs = (0.55 + maxDelay) * 1000 + 100;
-    const t = setTimeout(() => setShowShutter(false), totalMs);
+    const handleClick = (e: MouseEvent) => {
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const anchor = (e.target as HTMLElement)?.closest("a");
+      if (!anchor) return;
+      const href = anchor.getAttribute("href");
+      if (!href || !href.startsWith("/") || anchor.target === "_blank") return;
+      if (href === pathname) return;
+
+      e.preventDefault();
+      e.stopPropagation();
+      pendingHref.current = href;
+      setPhase("cover");
+    };
+    document.addEventListener("click", handleClick, true);
+    return () => document.removeEventListener("click", handleClick, true);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (phase !== "cover") return;
+    const maxStagger = (cols - 1) * STAGGER_STEP;
+    const t = setTimeout(() => {
+      if (pendingHref.current) {
+        router.push(pendingHref.current);
+        pendingHref.current = null;
+      }
+      setPhase("hold");
+    }, (COVER_DURATION + maxStagger) * 1000);
     return () => clearTimeout(t);
-  }, [pathname, cols]);
+  }, [phase, cols, router]);
+
+  useEffect(() => {
+    if (phase !== "hold") return;
+    const t = setTimeout(() => setPhase("reveal"), HOLD_DURATION * 1000);
+    return () => clearTimeout(t);
+  }, [phase]);
+
+  useEffect(() => {
+    if (phase !== "reveal") return;
+    const maxStagger = (cols - 1) * STAGGER_STEP;
+    const t = setTimeout(() => setPhase("idle"), (REVEAL_DURATION + maxStagger) * 1000);
+    return () => clearTimeout(t);
+  }, [phase, cols]);
+
+  const overlayVisible = phase !== "idle";
+  const tileScale = phase === "reveal" ? 0 : 1;
 
   return (
     <>
@@ -43,7 +89,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
         </motion.div>
       </AnimatePresence>
 
-      {showShutter && (
+      {overlayVisible && (
         <div className="fixed inset-0 z-[100] pointer-events-none flex flex-col">
           {Array.from({ length: ROWS }).map((_, row) => (
             <div key={row} className="flex flex-1">
@@ -51,11 +97,10 @@ export default function PageTransition({ children }: { children: React.ReactNode
                 <motion.div
                   key={col}
                   initial={{ scaleX: 0 }}
-                  animate={{ scaleX: [0, 1, 1, 0] }}
+                  animate={{ scaleX: tileScale }}
                   transition={{
-                    duration: 0.55,
-                    delay: col * 0.025,
-                    times: [0, 0.4, 0.6, 1],
+                    duration: phase === "reveal" ? REVEAL_DURATION : COVER_DURATION,
+                    delay: col * STAGGER_STEP,
                     ease: [0.76, 0, 0.24, 1],
                   }}
                   style={{
@@ -69,6 +114,21 @@ export default function PageTransition({ children }: { children: React.ReactNode
               ))}
             </div>
           ))}
+
+          {phase === "hold" && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.2 }}
+              className="absolute inset-0 flex items-center justify-center"
+            >
+              <img
+                src="https://res.cloudinary.com/dxiefklmt/image/upload/w_192,h_192,c_fill,f_png/v1787844672/FB_favicon_pyhjsg.png"
+                alt="Favour Baraka"
+                className="w-16 h-16 rounded-full"
+              />
+            </motion.div>
+          )}
         </div>
       )}
     </>
