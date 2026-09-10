@@ -1,12 +1,16 @@
 "use client";
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import Magnetic from "@/components/Magnetic";
 import ConvergeWords from "@/components/ConvergeWords";
 import ParallaxGlow from "@/components/ParallaxGlow";
+import PortalPhotoReveal from "@/components/PortalPhotoReveal";
+import ParallaxImage from "@/components/ParallaxImage";
+import ParallaxLayer from "@/components/ParallaxLayer";
 
-const fadeUp: Variants = {
+
+const fadeUp = {
   hidden: { opacity: 0, y: 24 },
   show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.23, 1, 0.32, 1] } },
 };
@@ -26,14 +30,14 @@ export default function Home() {
           </motion.p>
 
           <h1 className="text-5xl sm:text-6xl font-bold leading-[1.12] mb-8">
-  <ConvergeWords text="I build things that" baseDelay={1.9} />
-  <br />
-  <ConvergeWords
-    text="hold up under real use."
-    baseDelay={2.22}
-    className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
-  />
-</h1>
+            <ConvergeWords text="I build things that" baseDelay={1.9} />
+            <br />
+            <ConvergeWords
+              text="hold up under real use."
+              baseDelay={2.22}
+              className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+            />
+          </h1>
 
           <motion.p initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
             className="text-lg text-gray-400 max-w-md leading-relaxed mb-10">
@@ -56,48 +60,34 @@ export default function Home() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.94 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-          className="relative flex items-center justify-center"
-        >
-          <div className="orbit-wrap relative w-64 sm:w-72 md:w-80 h-64 sm:h-72 md:h-80">
-            <div className="absolute inset-6 rounded-[2rem] overflow-hidden panel">
-              <motion.div
-                initial={{ scale: 1.15, filter: "blur(12px)" }}
-                whileInView={{ scale: 1, filter: "blur(0px)" }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute inset-0"
-              >
-                <Image
-                  src="https://res.cloudinary.com/dxiefklmt/image/upload/v1787825099/WhatsApp_Image_2026-08-27_at_11.24.00_h3ckml.jpg"
-                  alt="Favour Baraka"
-                  fill
-                  sizes="320px"
-                  className="object-cover"
-                  priority
-                />
-              </motion.div>
-              <div className="absolute inset-0 z-10 flex">
-                {[0, 1, 2, 3].map((i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ y: "0%" }}
-                    whileInView={{ y: i % 2 === 0 ? "-100%" : "100%" }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.7, delay: 0.15 + i * 0.08, ease: [0.76, 0, 0.24, 1] }}
-                    className="flex-1 bg-gradient-to-br from-blue-600 to-purple-600"
-                  />
-                ))}
-              </div>
-            </div>
-            <span className="orbit-item orbit-1 text-xs font-mono px-3 py-1.5 rounded-full panel">Engineer</span>
-            <span className="orbit-item orbit-2 text-xs font-mono px-3 py-1.5 rounded-full panel">Founder</span>
-            <span className="orbit-item orbit-3 text-xs font-mono px-3 py-1.5 rounded-full panel">President</span>
-          </div>
-        </motion.div>
+  initial={{ opacity: 0, scale: 0.94 }}
+  whileInView={{ opacity: 1, scale: 1 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+  className="relative flex items-center justify-center"
+>
+  <ParallaxLayer speed={0.4}>
+    <div className="orbit-wrap relative w-64 sm:w-72 md:w-80 h-64 sm:h-72 md:h-80">
+      <div className="absolute inset-6 rounded-[2rem] overflow-hidden panel">
+        <PortalPhotoReveal>
+          <ParallaxImage speed={1.1}>
+            <Image
+              src="https://res.cloudinary.com/dxiefklmt/image/upload/v1787825099/WhatsApp_Image_2026-08-27_at_11.24.00_h3ckml.jpg"
+              alt="Favour Baraka"
+              fill
+              sizes="320px"
+              className="object-cover"
+              priority
+            />
+          </ParallaxImage>
+        </PortalPhotoReveal>
+      </div>
+      <span className="orbit-item orbit-1 text-xs font-mono px-3 py-1.5 rounded-full panel">Engineer</span>
+      <span className="orbit-item orbit-2 text-xs font-mono px-3 py-1.5 rounded-full panel">Founder</span>
+      <span className="orbit-item orbit-3 text-xs font-mono px-3 py-1.5 rounded-full panel">President</span>
+    </div>
+  </ParallaxLayer>
+</motion.div>
       </section>
 
       {/* Scroll cue */}
@@ -131,40 +121,6 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* WHAT I BUILD */}
-<section className="relative max-w-4xl mx-auto px-6 pb-28">
-  <motion.h2 initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
-    className="title-underline text-2xl font-semibold mb-6">
-    What I build
-  </motion.h2>
-
-  <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
-    className="panel rounded-2xl p-8">
-    <p className="text-gray-400 leading-relaxed mb-5 max-w-lg">
-      Websites and digital platforms designed around what you actually need.
-    </p>
-
-    <div className="flex flex-wrap gap-x-3 gap-y-2 text-sm text-gray-500 font-mono mb-6">
-      {["Business websites", "Portfolios", "E-commerce", "Booking systems", "Custom web applications"].map((item, i, arr) => (
-        <span key={item} className="flex items-center gap-3">
-          <span className="hover:text-gray-300 transition-colors">{item}</span>
-          {i < arr.length - 1 && <span className="text-gray-700">·</span>}
-        </span>
-      ))}
-    </div>
-
-    <p className="text-gray-400 leading-relaxed mb-6 max-w-lg">
-      From a simple online presence to a complex platform, I can help turn the idea into something real.
-    </p>
-
-    <Magnetic>
-      <Link href="/contact" className="text-blue-400 text-sm font-medium hover:underline w-fit inline-flex items-center gap-1">
-        Have something in mind? → Let&apos;s talk
-      </Link>
-    </Magnetic>
-  </motion.div>
-</section>
-
       {/* HOW I BUILD */}
       <section className="relative max-w-4xl mx-auto px-6 pb-28">
         <motion.h2 initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
@@ -174,31 +130,21 @@ export default function Home() {
 
         <div className="space-y-12">
           {[
-            {
-              n: "01",
-              t: "Simple first.",
-              d: "Everything starts as the smallest version that actually works, then earns its complexity.",
-            },
-            {
-              n: "02",
-              t: "No dead ends.",
-              d: "If a user hits a wall, that's a bug — whether or not it throws an error.",
-            },
-            {
-              n: "03",
-              t: "Ship it, then watch it.",
-              d: "Code that works on my machine isn't done. Code that survives real traffic is.",
-            },
-          ].map((item) => (
-            <motion.div key={item.n} initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
-              className="flex gap-6 sm:gap-10">
-              <span className="text-sm font-mono text-gray-600 pt-1 shrink-0">{item.n}</span>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">{item.t}</h3>
-                <p className="text-gray-400 leading-relaxed max-w-lg">{item.d}</p>
-              </div>
-            </motion.div>
-          ))}
+  { n: "01", t: "Simple first.", d: "Everything starts as the smallest version that actually works, then earns its complexity." },
+  { n: "02", t: "No dead ends.", d: "If a user hits a wall, that's a bug — whether or not it throws an error." },
+  { n: "03", t: "Ship it, then watch it.", d: "Code that works on my machine isn't done. Code that survives real traffic is." },
+].map((item) => (
+  <motion.div key={item.n} initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
+    className="flex gap-6 sm:gap-10">
+    <ParallaxLayer speed={0.6}>
+      <span className="text-sm font-mono text-gray-600 pt-1 shrink-0 block">{item.n}</span>
+    </ParallaxLayer>
+    <div>
+      <h3 className="text-xl font-semibold mb-2">{item.t}</h3>
+      <p className="text-gray-400 leading-relaxed max-w-lg">{item.d}</p>
+    </div>
+  </motion.div>
+))}
         </div>
       </section>
 
@@ -219,15 +165,26 @@ export default function Home() {
       <section className="relative max-w-4xl mx-auto px-6 pb-28">
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
           className="panel rounded-2xl overflow-hidden grid sm:grid-cols-5">
+          
           <div className="sm:col-span-2 relative h-56 sm:h-auto">
-            <Image
-              src="https://res.cloudinary.com/dxiefklmt/image/upload/v1787825099/WhatsApp_Image_2026-08-27_at_11.33.46_h9mqxx.jpg"
-              alt="Favour preaching"
-              fill
-              sizes="(max-width: 640px) 100vw, 40vw"
-              className="object-cover"
-            />
-          </div>
+  <motion.div
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.9, ease: [0.23, 1, 0.32, 1] }}
+    className="absolute inset-0"
+  >
+    <ParallaxImage speed={0.8}>
+      <Image
+        src="https://res.cloudinary.com/dxiefklmt/image/upload/v1787825099/WhatsApp_Image_2026-08-27_at_11.33.46_h9mqxx.jpg"
+        alt="Favour preaching"
+        fill
+        sizes="(max-width: 640px) 100vw, 40vw"
+        className="object-cover"
+      />
+    </ParallaxImage>
+  </motion.div>
+</div>
           <div className="sm:col-span-3 p-10 flex flex-col justify-center">
             <h2 className="text-xl font-semibold mb-4">Beyond the code</h2>
             <p className="text-gray-400 leading-relaxed mb-6">
