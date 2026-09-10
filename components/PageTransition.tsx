@@ -19,15 +19,13 @@ export default function PageTransition({ children }: { children: React.ReactNode
   const [phase, setPhase] = useState<Phase>("idle");
   const [cols, setCols] = useState(14);
   const pendingHref = useRef<string | null>(null);
+  const prevPhase = useRef<Phase>("idle");
 
   useEffect(() => {
     const isDesktop = window.matchMedia("(min-width: 768px)").matches;
     setCols(isDesktop ? 14 : 7);
   }, []);
 
-  // Capture phase runs BEFORE Next.js Link's own click handler, so we can
-  // pause navigation and cover the screen first — this is what eliminates
-  // the flash of new content you were seeing.
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -72,6 +70,15 @@ export default function PageTransition({ children }: { children: React.ReactNode
     const t = setTimeout(() => setPhase("idle"), (REVEAL_DURATION + maxStagger) * 1000);
     return () => clearTimeout(t);
   }, [phase, cols]);
+
+  // Fires only when a real cover→hold→reveal cycle just finished —
+  // not on first mount, so it never fires ahead of IntroSplash on load.
+  useEffect(() => {
+    if (prevPhase.current !== "idle" && phase === "idle") {
+      window.dispatchEvent(new CustomEvent("page-transition-done"));
+    }
+    prevPhase.current = phase;
+  }, [phase]);
 
   const overlayVisible = phase !== "idle";
   const tileScale = phase === "reveal" ? 0 : 1;

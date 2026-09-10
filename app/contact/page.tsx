@@ -1,9 +1,10 @@
 "use client";
 import { motion, Variants } from "framer-motion";
+import ParallaxGlow from "@/components/ParallaxGlow";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.23, 1, 0.32, 1] } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.23, 1, 0.32, 1] as const } },
 };
 
 const contacts = [
@@ -29,17 +30,6 @@ const contacts = [
     ),
   },
   {
-    label: "LinkedIn",
-    sub: "in/favour-baraka",
-    href: "https://www.linkedin.com/in/favour-baraka-a27490408/",
-    external: true,
-    icon: (
-      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M20.45 20.45h-3.56v-5.58c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.68H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45z" />
-      </svg>
-    ),
-  },
-  {
     label: "Instagram",
     sub: "@barakafavour86",
     href: "https://www.instagram.com/barakafavour86/",
@@ -61,12 +51,23 @@ const contacts = [
       </svg>
     ),
   },
+  {
+    label: "LinkedIn",
+    sub: "in/favour-baraka",
+    href: "https://www.linkedin.com/in/favour-baraka-a27490408/",
+    external: true,
+    icon: (
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M20.45 20.45h-3.56v-5.58c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.68H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45z" />
+      </svg>
+    ),
+  },
 ];
 
 export default function ContactPage() {
   return (
     <div className="relative">
-      <div className="glow glow-purple w-[450px] h-[450px] top-0 left-1/2 -translate-x-1/2" />
+      <ParallaxGlow className="glow-purple w-[450px] h-[450px] top-0 left-1/2 -translate-x-1/2" />
 
       <div className="relative max-w-3xl mx-auto px-6 py-24 text-center">
         <motion.p initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
@@ -88,7 +89,7 @@ export default function ContactPage() {
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
           className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 text-left">
           {contacts.map((c) => (
-           <a 
+            <a
               key={c.label}
               href={c.href}
               target={c.external ? "_blank" : undefined}

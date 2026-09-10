@@ -2,6 +2,8 @@
 import { motion, Variants } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import ParallaxGlow from "@/components/ParallaxGlow";
+import ParallaxLayer from "@/components/ParallaxLayer";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -14,10 +16,12 @@ const LOGO_URL =
 export default function DominionCaseStudy() {
   return (
     <div className="relative max-w-3xl mx-auto px-6 py-24 overflow-hidden">
-      <div className="pointer-events-none absolute -top-20 -right-32 w-[420px] h-[420px] opacity-[0.05] blur-sm">
-        <Image src={LOGO_URL} alt="" fill className="object-contain" />
-      </div>
-      <div className="glow glow-purple w-[400px] h-[400px] top-0 right-0" />
+      <ParallaxLayer speed={0.3}>
+        <div className="pointer-events-none absolute -top-20 -right-32 w-[420px] h-[420px] opacity-[0.05] blur-sm">
+          <Image src={LOGO_URL} alt="" fill className="object-contain" />
+        </div>
+      </ParallaxLayer>
+      <ParallaxGlow className="glow-purple w-[400px] h-[400px] top-0 right-0" />
 
       <Link href="/work" className="relative text-sm text-blue-400 hover:underline">
         ← Work
