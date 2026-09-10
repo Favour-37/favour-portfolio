@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import Magnetic from "@/components/Magnetic";
@@ -9,10 +9,9 @@ import PortalPhotoReveal from "@/components/PortalPhotoReveal";
 import ParallaxImage from "@/components/ParallaxImage";
 import ParallaxLayer from "@/components/ParallaxLayer";
 
-
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.23, 1, 0.32, 1] } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.23, 1, 0.32, 1] as const } },
 };
 
 export default function Home() {
@@ -60,34 +59,34 @@ export default function Home() {
         </div>
 
         <motion.div
-  initial={{ opacity: 0, scale: 0.94 }}
-  whileInView={{ opacity: 1, scale: 1 }}
-  viewport={{ once: true }}
-  transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-  className="relative flex items-center justify-center"
->
-  <ParallaxLayer speed={0.4}>
-    <div className="orbit-wrap relative w-64 sm:w-72 md:w-80 h-64 sm:h-72 md:h-80">
-      <div className="absolute inset-6 rounded-[2rem] overflow-hidden panel">
-        <PortalPhotoReveal>
-          <ParallaxImage speed={1.1}>
-            <Image
-              src="https://res.cloudinary.com/dxiefklmt/image/upload/v1787825099/WhatsApp_Image_2026-08-27_at_11.24.00_h3ckml.jpg"
-              alt="Favour Baraka"
-              fill
-              sizes="320px"
-              className="object-cover"
-              priority
-            />
-          </ParallaxImage>
-        </PortalPhotoReveal>
-      </div>
-      <span className="orbit-item orbit-1 text-xs font-mono px-3 py-1.5 rounded-full panel">Engineer</span>
-      <span className="orbit-item orbit-2 text-xs font-mono px-3 py-1.5 rounded-full panel">Founder</span>
-      <span className="orbit-item orbit-3 text-xs font-mono px-3 py-1.5 rounded-full panel">President</span>
-    </div>
-  </ParallaxLayer>
-</motion.div>
+          initial={{ opacity: 0, scale: 0.94 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] as const }}
+          className="relative flex items-center justify-center"
+        >
+          <ParallaxLayer speed={0.4}>
+            <div className="orbit-wrap relative w-64 sm:w-72 md:w-80 h-64 sm:h-72 md:h-80">
+              <div className="absolute inset-6 rounded-[2rem] overflow-hidden panel">
+                <PortalPhotoReveal>
+                  <ParallaxImage speed={1.1}>
+                    <Image
+                      src="https://res.cloudinary.com/dxiefklmt/image/upload/v1787825099/WhatsApp_Image_2026-08-27_at_11.24.00_h3ckml.jpg"
+                      alt="Favour Baraka"
+                      fill
+                      sizes="320px"
+                      className="object-cover"
+                      priority
+                    />
+                  </ParallaxImage>
+                </PortalPhotoReveal>
+              </div>
+              <span className="orbit-item orbit-1 text-xs font-mono px-3 py-1.5 rounded-full panel">Engineer</span>
+              <span className="orbit-item orbit-2 text-xs font-mono px-3 py-1.5 rounded-full panel">Founder</span>
+              <span className="orbit-item orbit-3 text-xs font-mono px-3 py-1.5 rounded-full panel">President</span>
+            </div>
+          </ParallaxLayer>
+        </motion.div>
       </section>
 
       {/* Scroll cue */}
@@ -130,21 +129,21 @@ export default function Home() {
 
         <div className="space-y-12">
           {[
-  { n: "01", t: "Simple first.", d: "Everything starts as the smallest version that actually works, then earns its complexity." },
-  { n: "02", t: "No dead ends.", d: "If a user hits a wall, that's a bug — whether or not it throws an error." },
-  { n: "03", t: "Ship it, then watch it.", d: "Code that works on my machine isn't done. Code that survives real traffic is." },
-].map((item) => (
-  <motion.div key={item.n} initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
-    className="flex gap-6 sm:gap-10">
-    <ParallaxLayer speed={0.6}>
-      <span className="text-sm font-mono text-gray-600 pt-1 shrink-0 block">{item.n}</span>
-    </ParallaxLayer>
-    <div>
-      <h3 className="text-xl font-semibold mb-2">{item.t}</h3>
-      <p className="text-gray-400 leading-relaxed max-w-lg">{item.d}</p>
-    </div>
-  </motion.div>
-))}
+            { n: "01", t: "Simple first.", d: "Everything starts as the smallest version that actually works, then earns its complexity." },
+            { n: "02", t: "No dead ends.", d: "If a user hits a wall, that's a bug — whether or not it throws an error." },
+            { n: "03", t: "Ship it, then watch it.", d: "Code that works on my machine isn't done. Code that survives real traffic is." },
+          ].map((item) => (
+            <motion.div key={item.n} initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
+              className="flex gap-6 sm:gap-10">
+              <ParallaxLayer speed={0.6}>
+                <span className="text-sm font-mono text-gray-600 pt-1 shrink-0 block">{item.n}</span>
+              </ParallaxLayer>
+              <div>
+                <h3 className="text-xl font-semibold mb-2">{item.t}</h3>
+                <p className="text-gray-400 leading-relaxed max-w-lg">{item.d}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </section>
 
@@ -167,24 +166,24 @@ export default function Home() {
           className="panel rounded-2xl overflow-hidden grid sm:grid-cols-5">
           
           <div className="sm:col-span-2 relative h-56 sm:h-auto">
-  <motion.div
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.9, ease: [0.23, 1, 0.32, 1] }}
-    className="absolute inset-0"
-  >
-    <ParallaxImage speed={0.8}>
-      <Image
-        src="https://res.cloudinary.com/dxiefklmt/image/upload/v1787825099/WhatsApp_Image_2026-08-27_at_11.33.46_h9mqxx.jpg"
-        alt="Favour preaching"
-        fill
-        sizes="(max-width: 640px) 100vw, 40vw"
-        className="object-cover"
-      />
-    </ParallaxImage>
-  </motion.div>
-</div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, ease: [0.23, 1, 0.32, 1] as const }}
+              className="absolute inset-0"
+            >
+              <ParallaxImage speed={0.8}>
+                <Image
+                  src="https://res.cloudinary.com/dxiefklmt/image/upload/v1787825099/WhatsApp_Image_2026-08-27_at_11.33.46_h9mqxx.jpg"
+                  alt="Favour preaching"
+                  fill
+                  sizes="(max-width: 640px) 100vw, 40vw"
+                  className="object-cover"
+                />
+              </ParallaxImage>
+            </motion.div>
+          </div>
           <div className="sm:col-span-3 p-10 flex flex-col justify-center">
             <h2 className="text-xl font-semibold mb-4">Beyond the code</h2>
             <p className="text-gray-400 leading-relaxed mb-6">
