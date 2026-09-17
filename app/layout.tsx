@@ -76,7 +76,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <ScrollProgress />
         <RouteProgress />
-        <ScrollProgress />
 
         <IntroSplash />
 

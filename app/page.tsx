@@ -8,6 +8,7 @@ import ParallaxGlow from "@/components/ParallaxGlow";
 import PortalPhotoReveal from "@/components/PortalPhotoReveal";
 import ParallaxImage from "@/components/ParallaxImage";
 import ParallaxLayer from "@/components/ParallaxLayer";
+import SectionHeading from "@/components/SectionHeading";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -102,10 +103,9 @@ export default function Home() {
 
       {/* RECENT WORK */}
       <section className="relative max-w-4xl mx-auto px-6 pb-28">
-        <motion.h2 initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
-          className="title-underline text-2xl font-semibold mb-10">
+        <SectionHeading className="text-2xl font-semibold mb-10">
           Recent work
-        </motion.h2>
+        </SectionHeading>
 
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}>
           <Link href="/work/dominion-outreach" className="panel block rounded-2xl p-8 group">
@@ -122,10 +122,9 @@ export default function Home() {
 
       {/* HOW I BUILD */}
       <section className="relative max-w-4xl mx-auto px-6 pb-28">
-        <motion.h2 initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
-          className="title-underline text-2xl font-semibold mb-14">
+        <SectionHeading className="text-2xl font-semibold mb-14">
           How I build
-        </motion.h2>
+        </SectionHeading>
 
         <div className="space-y-12">
           {[
@@ -135,9 +134,7 @@ export default function Home() {
           ].map((item) => (
             <motion.div key={item.n} initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
               className="flex gap-6 sm:gap-10">
-              <ParallaxLayer speed={0.6}>
-                <span className="text-sm font-mono text-gray-600 pt-1 shrink-0 block">{item.n}</span>
-              </ParallaxLayer>
+              <span className="text-sm font-mono text-gray-600 pt-1 shrink-0 block">{item.n}</span>
               <div>
                 <h3 className="text-xl font-semibold mb-2">{item.t}</h3>
                 <p className="text-gray-400 leading-relaxed max-w-lg">{item.d}</p>

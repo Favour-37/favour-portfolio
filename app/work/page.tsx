@@ -2,6 +2,7 @@
 import { motion, Variants } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import TechTags from "@/components/TechTags";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -34,9 +35,10 @@ export default function WorkIndex() {
           <h3 className="text-2xl font-semibold mb-3 group-hover:text-blue-400 transition-colors">
             Dominion Outreach
           </h3>
-          <p className="text-gray-400 leading-relaxed">
+          <p className="text-gray-400 leading-relaxed mb-5">
             Digital infrastructure for a discipleship ministry — bridging the gap after someone says yes to Jesus.
           </p>
+          <TechTags tags={["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"]} />
         </Link>
       </motion.div>
     </div>

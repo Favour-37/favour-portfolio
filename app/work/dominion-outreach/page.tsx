@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import ParallaxGlow from "@/components/ParallaxGlow";
 import ParallaxLayer from "@/components/ParallaxLayer";
+import TechTags from "@/components/TechTags";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -35,9 +36,13 @@ export default function DominionCaseStudy() {
         <h1 className="text-4xl font-bold">Dominion Outreach</h1>
       </motion.div>
 
-      <p className="relative text-gray-400 mb-14 ml-[76px]">
+      <p className="relative text-gray-400 mb-6 ml-[76px]">
         Digital infrastructure for a discipleship ministry.
       </p>
+
+      <div className="relative ml-[76px] mb-14">
+        <TechTags tags={["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"]} />
+      </div>
 
       <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
         className="relative panel rounded-2xl p-8 mb-6">
