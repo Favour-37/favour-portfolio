@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     template: "%s — Favour Baraka",
   },
   description: "Favour Baraka is a full-stack developer and founder based in Nairobi, Kenya, building things that hold up under real use.",
+  alternates: { canonical: "/" },
   icons: {
     icon: [{
       url: "https://res.cloudinary.com/dxiefklmt/image/upload/w_192,h_192,c_fill,f_png/v1787844672/FB_favicon_pyhjsg.png",

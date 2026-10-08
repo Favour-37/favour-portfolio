@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Dominion Outreach — Case Study",
   description:
     "Case study: a free discipleship platform for Dominion Outreach, built by Favour Baraka with Next.js, TypeScript, Tailwind CSS, and Framer Motion.",
+  alternates: { canonical: "/work/dominion-outreach" },
   openGraph: {
     title: "Dominion Outreach — Case Study — Favour Baraka",
     description:

@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Work",
   description:
     "Software projects built by Favour Baraka, including Dominion Outreach and Glory Dome Construction, using Next.js, TypeScript, and Tailwind CSS.",
+  alternates: { canonical: "/work" },
   openGraph: {
     title: "Work — Favour Baraka",
     description:

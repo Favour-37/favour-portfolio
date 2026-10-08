@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Contact",
   description:
     "Get in touch with Favour Baraka — full-stack developer based in Nairobi, Kenya, for freelance work, collaboration, or a quick hello.",
+  alternates: { canonical: "/contact" },
   openGraph: {
     title: "Contact — Favour Baraka",
     description:
