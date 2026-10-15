@@ -61,6 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               name: "Favour Baraka",
               jobTitle: "Full-Stack Developer",
               url: "https://favourbaraka.co.ke",
+              email: "hello@favourbaraka.co.ke",
               sameAs: [
                 "https://github.com/Favour-37",
                 "https://www.linkedin.com/in/favour-baraka-a27490408/",
