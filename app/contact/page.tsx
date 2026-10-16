@@ -10,8 +10,8 @@ const fadeUp: Variants = {
 const contacts = [
   {
     label: "Email",
-sub: "hello@favourbaraka.co.ke",
-  href: "mailto:hello@favourbaraka.co.ke",
+    sub: "hello@favourbaraka.co.ke",
+    href: "mailto:hello@favourbaraka.co.ke",
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -66,7 +66,7 @@ sub: "hello@favourbaraka.co.ke",
 
 export default function ContactPage() {
   return (
-    <div className="relative">
+    <div className="relative overflow-x-clip">
       <ParallaxGlow className="glow-purple w-[450px] h-[450px] top-0 left-1/2 -translate-x-1/2" />
 
       <div className="relative max-w-3xl mx-auto px-6 py-24 text-center">

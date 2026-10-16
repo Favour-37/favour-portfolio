@@ -17,7 +17,7 @@ const fadeUp: Variants = {
 
 export default function Home() {
   return (
-    <div className="relative">
+    <div className="relative overflow-x-clip">
       <ParallaxGlow className="glow-blue w-[500px] h-[500px] -top-40 -left-20" />
       <ParallaxGlow className="glow-purple w-[400px] h-[400px] top-20 right-0" />
 
@@ -161,7 +161,7 @@ export default function Home() {
       <section className="relative max-w-4xl mx-auto px-6 pb-28">
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
           className="panel rounded-2xl overflow-hidden grid sm:grid-cols-5">
-          
+
           <div className="sm:col-span-2 relative h-56 sm:h-auto">
             <motion.div
               initial={{ opacity: 0 }}
