@@ -165,3 +165,57 @@
 .panel {
   contain: layout paint;
 }
+
+/* About-page portrait: wide morphing blob, aurora rim and an offset ghost layer */
+@property --a {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.blob-wrap {
+  position: relative;
+}
+
+.blob-back,
+.blob-ring,
+.blob-photo {
+  position: absolute;
+  animation: blob-morph 10s ease-in-out infinite;
+}
+
+.blob-back {
+  inset: 0;
+  transform: translate(8.5%, 8%);
+  background: linear-gradient(145deg, rgba(122, 165, 255, 0.38), rgba(139, 92, 246, 0.26));
+  animation-direction: reverse;
+}
+
+.blob-ring {
+  inset: 0;
+  background: conic-gradient(from var(--a), #3b82f6, #8b5cf6, #d4b26a, #3b82f6);
+  animation: blob-morph 10s ease-in-out infinite, blob-turn 6s linear infinite;
+}
+
+.blob-photo {
+  inset: 3%;
+  overflow: hidden;
+  isolation: isolate; /* keeps the rounded clip working while the photo parallaxes */
+  background: #14304f;
+}
+
+/* Wider than tall at every stop, so the head never looks stretched */
+@keyframes blob-morph {
+  0%, 100% { border-radius: 58% 42% 46% 54% / 52% 46% 54% 48%; }
+  50%      { border-radius: 44% 56% 54% 46% / 48% 56% 44% 52%; }
+}
+
+@keyframes blob-turn {
+  to { --a: 360deg; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob-back,
+  .blob-ring,
+  .blob-photo { animation: none; }
+}

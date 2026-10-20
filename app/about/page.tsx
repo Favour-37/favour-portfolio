@@ -17,21 +17,27 @@ export default function AboutPage() {
       <ParallaxGlow className="glow-blue w-[450px] h-[450px] -top-32 right-0" />
 
       <section className="relative max-w-5xl mx-auto px-6 pt-16 pb-20 grid md:grid-cols-5 gap-14 items-center">
-        <div className="md:col-span-2">
-          <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden panel">
-            <PhotoReveal>
-              <ParallaxImage speed={0.7}>
-                <Image
-                  src="https://res.cloudinary.com/dxiefklmt/image/upload/v1787825099/WhatsApp_Image_2026-08-27_at_11.24.00_h3ckml.jpg"
-                  alt="Favour Baraka"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 40vw"
-                  className="object-cover"
-                />
-              </ParallaxImage>
-            </PhotoReveal>
-          </div>
-        </div>
+<div className="md:col-span-2">
+  <div className="mx-auto w-full max-w-[420px]">
+    <div className="blob-wrap w-[92%] aspect-[10/9]">
+      <div className="blob-back" />
+      <div className="blob-ring" />
+      <div className="blob-photo">
+        <PhotoReveal>
+          <ParallaxImage speed={0.7}>
+            <Image
+              src="https://res.cloudinary.com/dxiefklmt/image/upload/v1787825099/WhatsApp_Image_2026-08-27_at_11.24.00_h3ckml.jpg"
+              alt="Favour Baraka"
+              fill
+              sizes="(max-width: 768px) 100vw, 40vw"
+              className="object-cover object-[50%_30%]"
+            />
+          </ParallaxImage>
+        </PhotoReveal>
+      </div>
+    </div>
+  </div>
+</div>
 
         <div className="md:col-span-3">
           <motion.p initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
